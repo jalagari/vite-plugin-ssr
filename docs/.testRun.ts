@@ -43,6 +43,13 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
         left: getWidths(document.querySelector('#navigation-wrapper')),
         right: getWidths(document.querySelector('#page-wrapper')),
       }
+      function getWidths(elem: Element | null): Widths {
+        assert(elem)
+        return {
+          clientWidth: elem.clientWidth,
+          scrollWidth: elem.scrollWidth,
+        }
+      }
     })
     // Default viewport size: 1280x720
     //  - https://playwright.dev/docs/api/class-testoptions#test-options-viewport
@@ -62,14 +69,6 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
     function testWidth(widths: Widths, width: number) {
       expect(widths.clientWidth).toBe(width)
       expect(widths.scrollWidth).toBe(width)
-    }
-
-    function getWidths(elem: Element | null): Widths {
-      assert(elem)
-      return {
-        clientWidth: elem.clientWidth,
-        scrollWidth: elem.scrollWidth,
-      }
     }
   })
 }
