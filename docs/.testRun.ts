@@ -23,6 +23,7 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
 
   test('Learn more collapsible', async () => {
     await page.goto(urlBase + '/')
+    await expect(page.locator('body')).toBeVisible()
     const text = 'you keep control over how your pages are rendered'
     const query = `p:has-text(${text})`
     const el = page.locator(query)
