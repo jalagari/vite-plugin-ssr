@@ -22,11 +22,13 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
 
   test('Learn more collapsible', async () => {
     await page.goto(urlBase + '/')
-    const learnMoreText = 'you keep control over how your pages are rendered'
-    expect(await page.textContent('body')).not.toContain(learnMoreText)
+    const text = "you keep control over how your pages are rendered"
+    const query = `p:has-text(${text})`
+    const el = page.locator(query)
+    await expect(el).not.toBeVisible()
     await page.locator('h2:has-text("Control")').click()
-    expect(await page.textContent('body')).toContain(learnMoreText)
+    await expect(el).toBeVisible()
     await page.locator('h2:has-text("Control")').click()
-    expect(await page.textContent('body')).not.toContain(learnMoreText)
+    await expect(el).not.toBeVisible()
   })
 }
