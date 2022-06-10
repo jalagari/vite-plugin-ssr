@@ -1,9 +1,31 @@
 import React from 'react'
 import './PageLayout.css'
 
+import { Provider as Spectrum3Provider, defaultTheme } from '@adobe/react-spectrum'
 export { PageLayout }
 
 function PageLayout({ children }) {
+  const S3P = Spectrum3Provider.default? Spectrum3Provider.default: Spectrum3Provider
+  return (
+    <React.StrictMode>
+        <S3P theme={defaultTheme}>
+          <Layout>
+          <Sidebar>
+            <a className="navitem" href="/">
+              Home
+            </a>
+            <a className="navitem" href="/about">
+              About
+            </a>
+            <a className="navitem" href="/star-wars">
+              Star Wars
+            </a>
+          </Sidebar>
+          <Content>{children}</Content>
+        </Layout>
+        </S3P>
+    </React.StrictMode>
+  )
   return (
     <React.StrictMode>
       <Layout>

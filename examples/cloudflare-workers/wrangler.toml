@@ -5,6 +5,7 @@ workers_dev = true
 type = "webpack"
 webpack_config = "./webpack.config.js"
 
-[site]
-bucket = "./dist/client"
-entry-point = "./worker"
+
+main = "./dist/worker.js" # by default, or whatever file webpack outputs
+[build]
+command = "npm run build"
