@@ -23,15 +23,19 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
 
   test('Learn more collapsible', async () => {
     await page.goto(urlBase + '/')
-    expect(page.locator('body')).toBeVisible()
+    // @ts-ignore
+    await expect(page.locator('body')).toBeVisible()
     const text = 'you keep control over how your pages are rendered'
     const query = `p:has-text(${text})`
     const el = page.locator(query)
-    expect(el).not.toBeVisible()
+    // @ts-ignore
+    await expect(el).not.toBeVisible()
     await page.locator('h2:has-text("Control")').click()
-    expect(el).toBeVisible()
+    // @ts-ignore
+    await expect(el).toBeVisible()
     await page.locator('h2:has-text("Control")').click()
-    expect(el).not.toBeVisible()
+    // @ts-ignore
+    await expect(el).not.toBeVisible()
   })
 
   test('Layout', async () => {
@@ -51,6 +55,7 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
         }
       }
     })
+
     // Default viewport size: 1280x720
     //  - https://playwright.dev/docs/api/class-testoptions#test-options-viewport
     testWidth(layout.html, 1280)
