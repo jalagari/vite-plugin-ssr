@@ -23,15 +23,15 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
 
   test('Learn more collapsible', async () => {
     await page.goto(urlBase + '/')
-    await expect(page.locator('body')).toBeVisible()
+    expect(page.locator('body')).toBeVisible()
     const text = 'you keep control over how your pages are rendered'
     const query = `p:has-text(${text})`
     const el = page.locator(query)
-    await expect(el).not.toBeVisible()
+    expect(el).not.toBeVisible()
     await page.locator('h2:has-text("Control")').click()
-    await expect(el).toBeVisible()
+    expect(el).toBeVisible()
     await page.locator('h2:has-text("Control")').click()
-    await expect(el).not.toBeVisible()
+    expect(el).not.toBeVisible()
   })
 
   test('Layout', async () => {
