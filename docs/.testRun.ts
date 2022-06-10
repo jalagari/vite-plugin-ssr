@@ -1,6 +1,7 @@
 export { testRun }
 
 import { page, run, fetchHtml, partRegex, urlBase } from '../libframe/test/setup'
+import assert from 'assert'
 
 function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
   run(cmd)
@@ -22,7 +23,7 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
 
   test('Learn more collapsible', async () => {
     await page.goto(urlBase + '/')
-    const text = "you keep control over how your pages are rendered"
+    const text = 'you keep control over how your pages are rendered'
     const query = `p:has-text(${text})`
     const el = page.locator(query)
     await expect(el).not.toBeVisible()
@@ -62,7 +63,8 @@ function testRun(cmd: 'pnpm run dev' | 'pnpm run preview') {
       expect(widths.scrollWidth).toBe(width)
     }
 
-    function getWidths(elem: Element): Widths {
+    function getWidths(elem: Element | null): Widths {
+      assert(elem)
       return {
         clientWidth: elem.clientWidth,
         scrollWidth: elem.scrollWidth,
